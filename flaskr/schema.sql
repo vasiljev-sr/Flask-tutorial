@@ -15,3 +15,31 @@ CREATE TABLE post (
   body TEXT NOT NULL,
   FOREIGN KEY (author_id) REFERENCES user (id)
 );
+
+CREATE TABLE current_position (
+  id INTEGER NOT NULL,
+  datetime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id) REFERENCES positions (id)
+
+);
+
+CREATE TABLE positions (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  datetime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  opened_position TEXT NOT NULL,
+  entry_price INTEGER NOT NULL,
+  symbol TEXT NOT NULL,
+  position_size INTEGER NOT NULL,
+  margin INTEGER NOT NULL,
+  profit INTEGER NOT NULL,
+  status TEXT NOT NULL
+);
+
+CREATE TABLE order_history (
+  id INTEGER NOT NULL,
+  datetime TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  operation TEXT NOT NULL,
+  amount INTEGER NOT NULL,
+  price INTEGER NOT NULL,
+  FOREIGN KEY (id) REFERENCES positions (id)
+);
