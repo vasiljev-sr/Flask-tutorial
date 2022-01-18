@@ -2,11 +2,18 @@
 
 {% block header %}
   <h1>{% block title %}Order{% endblock %}</h1>
-  {% if g.user %}
-    <a class="action" href="{{ url_for('blog.create') }}">New</a>
-  {% endif %}
+
 {% endblock %}
 
 {% block content %}
-  <p>{{last_position[0]}}</p>
+  <p>id: {{last_position['id']}}</p>
+  <p>datetime: {{last_position['datetime']}}</p>
+  <p>Открытая позиция: {{last_position['opened_position']}}</p>
+  <p>Цена входа: {{last_position['entry_price']}}</p>
+  <p>Символ: {{last_position['symbol']}}</p>
+  <p>Размер входа: {{last_position['position_size']}}</p>
+  <p>Маржа: {{last_position['margin']}}</p>
+  <p>Прибль: {{last_position['profit']}}</p>
+  <p>Статус: {{last_position['status']}}</p>
+
 {% endblock %}

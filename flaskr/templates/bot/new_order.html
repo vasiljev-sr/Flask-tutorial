@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Post{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="opened_position">opened_position</label>
+    <input name="opened_position" id="opened_position" value="{{ request.form['opened_position'] }}" required>
+    <label for="entry_price">entry_price</label>
+    <input name="entry_price" id="entry_price" value="{{ request.form['entry_price'] }}" required>
+    <label for="symbol">symbol</label>
+    <input name="symbol" id="symbol" value="{{ request.form['symbol'] }}" required>
+    <label for="position_size">position_size</label>
+    <input name="position_size" id="position_size" value="{{ request.form['position_size'] }}" required>
+    <label for="margin">margin</label>
+    <input name="margin" id="margin" value="{{ request.form['margin'] }}" required>
+    <label for="profit">profit</label>
+    <input name="profit" id="profit" value="{{ request.form['profit'] }}" required>
+    <label for="status">status</label>
+    <input name="status" id="status" value="{{ request.form['status'] }}" required>
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}
