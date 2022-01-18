@@ -32,7 +32,7 @@ CREATE TABLE positions (
   position_size INTEGER NOT NULL,
   margin INTEGER NOT NULL,
   profit INTEGER NOT NULL,
-  status TEXT NOT NULL
+status TEXT NOT NULL
 );
 
 CREATE TABLE order_history (
