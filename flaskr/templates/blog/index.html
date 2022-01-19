@@ -27,21 +27,53 @@
 <!--      <hr>-->
 <!--    {% endif %}-->
 <!--  {% endfor %}-->
+
   {% if order['id'] != 0 %}
-    <p class="title" >id: <span class="subtitle">{{order['id']}}</span></p>
-    <p class="title" >Открытие сделки: <span class="subtitle">{{order['datetime'].strftime('%H:%M:%S %d.%m.%Y')}}</span></p>
-    {% if order['opened_position'] == 'short' %}
-    <p class="title" >Позиция: <span class="subtitle red">{{order['opened_position']}}</span></p>
-    {% else %}
-    <p class="title" >Позиция: <span class="subtitle green">{{order['opened_position']}}</span></p>
-    {% endif %}
-    <p class="title" >Цена входа: <span class="subtitle">{{order['entry_price']}}</span></p>
-    <p class="title" >Сумма входа: <span class="subtitle">{{order['position_size']}}</span></p>
-    <p class="title" >Маржа: <span class="subtitle">{{order['margin']}}</span></p>
-    <p class="title" >Профит: <span class="subtitle">{{order['profit']}}</span></p>
-    <p class="title" >Символ: <span class="subtitle">{{order['symbol']}}</span></p>
-    <p class="title" >Статус: <span class="subtitle">{{order['status']}}</span></p>
+    <table>
+      <tr>
+        <th>id</th>
+        <th>Открытие позиции</th>
+        <th>Позиция</th>
+        <th>Цена входа</th>
+        <th>Сумма входа</th>
+        <th>Маржа</th>
+        <th>Профит</th>
+        <th>Символ</th>
+        <th>Статус</th>
+      </tr>
+       <tr>
+        <td>{{order['id']}}</td>
+        <td>{{order['datetime'].strftime('%H:%M:%S %d.%m.%Y')}}</td>
+       {% if order['opened_position'] == 'short' %}
+        <td class="red">{{order['opened_position']}}</td>
+      {% else %}
+        <td class="green">{{order['opened_position']}}</td>
+      {% endif %}
+
+        <td>{{order['entry_price']}}</td>
+        <td>{{order['position_size']}}</td>
+        <td>{{order['margin']}}</td>
+        <td>{{order['profit']}}</td>
+        <td>{{order['symbol']}}</td>
+        <td>{{order['status']}}</td>
+      </tr>
+  </table>
   {% else %}
-    <p class="title">Нет активных ордеров</p>
+    <p>Нет открытых позиций</p>
   {% endif %}
 {% endblock %}
+
+
+<!--    <p class="title" >id: <span class="subtitle">{{order['id']}}</span></p>-->
+<!--    <p class="title" >Открытие сделки: <span class="subtitle">{{order['datetime'].strftime('%H:%M:%S %d.%m.%Y')}}</span></p>-->
+<!--    {% if order['opened_position'] == 'short' %}-->
+<!--    <p class="title" >Позиция: <span class="subtitle red">{{order['opened_position']}}</span></p>-->
+<!--    {% else %}-->
+<!--    <p class="title" >Позиция: <span class="subtitle green">{{order['opened_position']}}</span></p>-->
+<!--    {% endif %}-->
+<!--    <p class="title" >Цена входа: <span class="subtitle">{{order['entry_price']}}</span></p>-->
+<!--    <p class="title" >Сумма входа: <span class="subtitle">{{order['position_size']}}</span></p>-->
+<!--    <p class="title" >Маржа: <span class="subtitle">{{order['margin']}}</span></p>-->
+<!--    <p class="title" >Профит: <span class="subtitle">{{order['profit']}}</span></p>-->
+<!--    <p class="title" >Символ: <span class="subtitle">{{order['symbol']}}</span></p>-->
+<!--    <p class="title" >Статус: <span class="subtitle">{{order['status']}}</span></p>-->
