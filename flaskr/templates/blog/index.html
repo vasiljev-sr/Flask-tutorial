@@ -29,7 +29,7 @@
 <!--  {% endfor %}-->
   {% if order['id'] != 0 %}
     <p class="title" >id: <span class="subtitle">{{order['id']}}</span></p>
-    <p class="title" >Время: <span class="subtitle">{{order['datetime'].strftime('%Y-%m-%d %H:%M:%S')}}</span></p>
+    <p class="title" >Открытие сделки: <span class="subtitle">{{order['datetime'].strftime('%H:%M:%S %d.%m.%Y')}}</span></p>
     {% if order['opened_position'] == 'short' %}
     <p class="title" >Позиция: <span class="subtitle red">{{order['opened_position']}}</span></p>
     {% else %}
