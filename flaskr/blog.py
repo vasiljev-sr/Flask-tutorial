@@ -131,7 +131,6 @@ def position_history(id):
         ' WHERE p.id = ?',
         (id,)
     ).fetchall()
-    print(position)
     if len(position) is 0:
         abort(404, f"Position id {id} doesn't exist.")
 
