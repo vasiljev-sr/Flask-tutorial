@@ -98,3 +98,14 @@ def delete(id):
     db.execute('DELETE FROM post WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('blog.index'))
+
+
+@bp.route('/history')
+def history():
+    db = get_db()
+    orders = get_db().execute(
+        'SELECT id, status, profit, margin,position_size,symbol,entry_price,opened_position, datetime '
+        ' FROM positions p '
+        'ORDER BY id DESC LIMIT 10'
+    ).fetchall()
+    return render_template('blog/order.html', orders=orders)

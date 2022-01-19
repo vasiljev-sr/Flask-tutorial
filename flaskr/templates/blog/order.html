@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Orders{% endblock %}</h1>
+
+{% endblock %}
+
+{% block content %}
+  <table>
+    <tr>
+      <th>id</th>
+      <th>Время</th>
+      <th>Позиция</th>
+      <th>Цена входа</th>
+      <th>Сумма входа</th>
+      <th>Маржа</th>
+      <th>Профит</th>
+      <th>Символ</th>
+      <th>Статус</th>
+    </tr>
+    {% for order in orders %}
+     <tr>
+      <td>{{order['id']}}</td>
+      <td>{{order['datetime']}}</td>
+      <td>{{order['opened_position']}}</td>
+      <td>{{order['entry_price']}}</td>
+      <td>{{order['position_size']}}</td>
+      <td>{{order['margin']}}</td>
+      <td>{{order['profit']}}</td>
+      <td>{{order['symbol']}}</td>
+      <td>{{order['status']}}</td>
+    </tr>
+     {% endfor %}
+  </table>
+
+
+
+{% endblock %}

@@ -24,3 +24,16 @@ nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 .content textarea { min-height: 12em; resize: vertical; }
 input.danger { color: #cc2f2e; }
 input[type=submit] { align-self: start; min-width: 10em; }
+
+table{
+
+    border: 1px solid #000; /* Рамка вокруг таблицы */
+    width: 100%;
+
+    margin: 40px 0;
+}
+
+tbody{
+border: 1px solid #000;
+}
+
