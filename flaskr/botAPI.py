@@ -48,6 +48,24 @@ def new_order():
     return Response('Ok')
 
 
+@bp.route('/update', methods=('GET', 'POST'))
+def update_order():
+    if request.method == 'POST':
+        data = json.loads(request.json)
+        id = data['id']
+        profit = data['profit']
+        status = data['status']
+
+        db = get_db()
+        db.execute(
+            'UPDATE positions SET profit = ?, status = ?'
+            ' WHERE id = ?',
+            (profit, status, id)
+        )
+        db.commit()
+    return Response('Ok')
+
+
 
 
 
