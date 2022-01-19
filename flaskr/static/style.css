@@ -26,14 +26,26 @@ input.danger { color: #cc2f2e; }
 input[type=submit] { align-self: start; min-width: 10em; }
 
 table{
-
     border: 1px solid #000; /* Рамка вокруг таблицы */
     width: 100%;
-
     margin: 40px 0;
 }
 
-tbody{
-border: 1px solid #000;
+.title{
+    font-weight: 600;
+    color: #000;
 }
+.subtitle{
+    font-weight: 400;
+    color: #000;
+}
+.red{
+    font-weight: 600;
+    color: red;
+}
+.green{
+    font-weight: 600;
+    color: green;
+}
+
 
