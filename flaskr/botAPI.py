@@ -52,6 +52,7 @@ def new_order():
 def update_order():
     if request.method == 'POST':
         data = json.loads(request.json)
+
         id = data['id']
         profit = data['profit']
         status = data['status']
