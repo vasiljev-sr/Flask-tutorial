@@ -1,5 +1,8 @@
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS current_position;
+DROP TABLE IF EXISTS positions;
+DROP TABLE IF EXISTS order_history;
 
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -43,3 +46,6 @@ CREATE TABLE order_history (
   price INTEGER NOT NULL,
   FOREIGN KEY (id) REFERENCES positions (id)
 );
+
+INSERT INTO positions (opened_position, entry_price, symbol, position_size, margin,profit, status)
+VALUES (0, 0, 0, 0, 0, 0, 0)
