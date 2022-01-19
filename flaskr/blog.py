@@ -9,6 +9,7 @@ from flaskr.db import get_db
 bp = Blueprint('blog', __name__)
 
 @bp.route('/')
+@login_required
 def index():
     db = get_db()
     order = db.execute(
@@ -102,11 +103,36 @@ def delete(id):
 
 
 @bp.route('/history')
+@login_required
 def history():
     db = get_db()
     orders = get_db().execute(
         'SELECT id, status, profit, margin,position_size,symbol,entry_price,opened_position, datetime '
-        ' FROM positions p '
+        'FROM positions p '
         'ORDER BY id DESC LIMIT 10'
     ).fetchall()
-    return render_template('blog/order.html', orders=orders)
+    return render_template('blog/positions.html', orders=orders)
+
+
+@bp.route('/history/<int:id>')
+@login_required
+def position_history(id):
+    db = get_db()
+    # position = get_db().execute(
+    #     'SELECT id '
+    #     ' FROM order_history '
+    #     ' WHERE id = ?',
+    #     (id)
+    # ).fetchall()
+
+    position = get_db().execute(
+        'SELECT id, datetime, operation, amount, price'
+        ' FROM order_history p'
+        ' WHERE p.id = ?',
+        (id,)
+    ).fetchall()
+    print(position)
+    if len(position) is 0:
+        abort(404, f"Position id {id} doesn't exist.")
+
+    return render_template('blog/position_history.html', position=position)
