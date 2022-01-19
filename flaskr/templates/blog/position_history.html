@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Позиция id={{ position[0]['id'] }}{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <table>
+    <tr>
+      <th>Время и дата</th>
+      <th>Операция</th>
+      <th>Объем закрытия, %</th>
+      <th>Цена закрытия</th>
+    </tr>
+    {% for row in position %}
+     <tr>
+      <td>{{row['datetime'].strftime('%H:%M:%S %d.%m.%Y')}}</td>
+     {% if row['operation'] == 'stop_loss' %}
+      <td class="red">{{row['operation']}}</td>
+    {% else %}
+      <td class="green">{{row['operation']}}</td>
+    {% endif %}
+      <td>{{row['amount']}}</td>
+      <td>{{row['price']}}</td>
+    </tr>
+     {% endfor %}
+  </table>
+
+{% endblock %}
+
