@@ -25,11 +25,7 @@ nav ul li a, nav ul li span, header .action { display: block; padding: 0.5rem; }
 input.danger { color: #cc2f2e; }
 input[type=submit] { align-self: start; min-width: 10em; }
 
-table{
-    border: 1px solid #000; /* Рамка вокруг таблицы */
-    width: 100%;
-    margin: 40px 0;
-}
+
 
 .title{
     font-weight: 600;
@@ -39,6 +35,35 @@ table{
     font-weight: 400;
     color: #000;
 }
+
+
+table {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+  font-size: 14px;
+  background: white;
+  max-width: 70%;
+  width: 80%;
+  border-collapse: collapse;
+  text-align: left;
+  margin: 20px auto 10px auto;
+  border: 1px solid #69c;
+}
+th {
+  font-weight: normal;
+  color: #039;
+  border-bottom: 2px solid #6678b1;
+  padding: 10px 8px;
+}
+td {
+  color: #669;
+  padding: 9px 8px;
+  transition: .3s linear;
+}
+tr:hover td {
+  color: #000;
+  background: #e8edff;
+}
+
 .red{
     font-weight: 600;
     color: red;
@@ -47,5 +72,4 @@ table{
     font-weight: 600;
     color: green;
 }
-
 
