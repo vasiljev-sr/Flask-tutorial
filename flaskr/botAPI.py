@@ -12,24 +12,23 @@ bp = Blueprint('bot', __name__ , url_prefix='/bot')
 
 @bp.route('/last_pos', methods=(['GET']))
 def last_pos():
-    db = get_db()
-    last_position = get_db().execute(
+    data = get_db().execute(
         'SELECT id, status, profit, margin,position_size,symbol,entry_price,opened_position, datetime '
         ' FROM positions p '
          'ORDER BY id DESC LIMIT 1'
     ).fetchone()
 
     # [last_position.pop(key) for key in ['id', 'datetime']]
-    # data = json.dumps(last_position, indent=4, sort_keys=True, default=str)
+    data = json.dumps(data, indent=4, sort_keys=True, default=str)
+
     # requests.post('http://127.0.0.1:5000/bot/new_order', json=data)
-    return last_position
+    return data
 
 
-@bp.route('/new_order', methods=('GET', 'POST'))
-def new_order():
+@bp.route('/new_pos', methods=('GET', 'POST'))
+def new_pos():
     if request.method == 'POST':
         data = json.loads(request.json)
-
         opened_position = data['opened_position']
         entry_price = data['entry_price']
         symbol = data['symbol']
@@ -48,8 +47,8 @@ def new_order():
     return Response('Ok')
 
 
-@bp.route('/update', methods=('GET', 'POST'))
-def update_order():
+@bp.route('/update_pos', methods=('GET', 'POST'))
+def update_pos():
     if request.method == 'POST':
         data = json.loads(request.json)
 
@@ -65,6 +64,29 @@ def update_order():
         )
         db.commit()
     return Response('Ok')
+
+
+@bp.route('/current_pos', methods=('GET', 'POST'))
+def current_pos():
+    if request.method == 'POST':
+        data = json.loads(request.json)
+
+        id = data['id']
+        datetime = data['datetime']
+
+        db = get_db()
+        db.execute(
+            'UPDATE current_position SET id = ?, datetime = ?',
+            (id,datetime )
+        )
+        db.commit()
+    return Response('Ok')
+
+
+
+
+
+
 
 
 
