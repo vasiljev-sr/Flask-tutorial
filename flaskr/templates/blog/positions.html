@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block content %}
+
   <table>
     <tr>
       <th>id</th>
@@ -20,13 +21,17 @@
     </tr>
     {% for order in orders %}
      <tr>
+      {% if order['status'] == 'closed' %}
       <td><a class="action" href="{{ url_for('blog.position_history', id=order['id']) }}">{{order['id']}}</a></td>
+      {% else %}
+      <td>{{order['id']}}</td>
+      {% endif %}
       <td>{{order['datetime'].strftime('%H:%M:%S %d.%m.%Y')}}</td>
-     {% if order['opened_position'] == 'short' %}
+      {% if order['opened_position'] == 'short' %}
       <td class="red">{{order['opened_position']}}</td>
-    {% else %}
+      {% else %}
       <td class="green">{{order['opened_position']}}</td>
-    {% endif %}
+      {% endif %}
 
       <td>{{order['entry_price']}}</td>
       <td>{{order['position_size']}}</td>
@@ -37,6 +42,8 @@
     </tr>
      {% endfor %}
   </table>
+
+  
 
 
 

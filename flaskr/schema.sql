@@ -34,7 +34,7 @@ CREATE TABLE positions (
   symbol TEXT NOT NULL,
   position_size INTEGER NOT NULL,
   margin INTEGER NOT NULL,
-  profit INTEGER NOT NULL,
+  profit INTEGER NOT NULL SET DEFAULT 0,
   status TEXT NOT NULL
 );
 

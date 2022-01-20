@@ -35,7 +35,13 @@ input[type=submit] { align-self: start; min-width: 10em; }
     font-weight: 400;
     color: #000;
 }
-
+.box {
+  overflow: scroll;
+  height:500px;
+  width: 100%
+  
+     
+}
 
 table {
   font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;

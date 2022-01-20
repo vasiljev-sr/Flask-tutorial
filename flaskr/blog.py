@@ -109,7 +109,7 @@ def history():
     orders = get_db().execute(
         'SELECT id, status, profit, margin,position_size,symbol,entry_price,opened_position, datetime '
         'FROM positions p '
-        'ORDER BY id DESC LIMIT 10'
+        'ORDER BY id DESC'
     ).fetchall()
     return render_template('blog/positions.html', orders=orders)
 
@@ -117,13 +117,6 @@ def history():
 @bp.route('/history/<int:id>')
 @login_required
 def position_history(id):
-    db = get_db()
-    # position = get_db().execute(
-    #     'SELECT id '
-    #     ' FROM order_history '
-    #     ' WHERE id = ?',
-    #     (id)
-    # ).fetchall()
 
     position = get_db().execute(
         'SELECT id, datetime, operation, amount, price'
