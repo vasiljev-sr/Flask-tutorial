@@ -18,7 +18,11 @@ def index():
         ' FROM positions p JOIN current_position u ON p.id = u.id'
 
     ).fetchone()
-    return render_template('blog/index.html', order=order)
+    settings = db.execute(
+        'SELECT *'
+        ' FROM bot_settings '
+    ).fetchone()
+    return render_template('blog/index.html', order=order, settings=settings)
 
 
 @bp.route('/create', methods=('GET', 'POST'))
@@ -124,7 +128,7 @@ def position_history(id):
         ' WHERE p.id = ?',
         (id,)
     ).fetchall()
-    if len(position) is 0:
+    if len(position) == 0:
         abort(404, f"Position id {id} doesn't exist.")
 
     return render_template('blog/position_history.html', position=position)
