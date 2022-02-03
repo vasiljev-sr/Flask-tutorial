@@ -28,6 +28,8 @@
 <!--    {% endif %}-->
 <!--  {% endfor %}-->
 
+
+<div class="position">
   {% if order['id'] != 0 %}
     <table>
       <tr>
@@ -60,8 +62,25 @@
   </table>
   {% else %}
     <p>Нет открытых позиций</p>
+</div>
+  
+
+<div class="settings">
+  <div class="settings__header" id='set'>
+    Настройки
+  </div>
+  <div class="settings__body hide" >
+    <ul>
+      <li>Символ: {{settings['symbol']}}</li>
+      <li>Размер позиции: {{settings['position_amt']}}</li>
+      <li>Процент стоп-лосса: {{settings['stop_percent']}}</li>
+    </ul>
+  </div>
+</div>
+  
   {% endif %}
 {% endblock %}
+
 
 
 <!--    <p class="title" >id: <span class="subtitle">{{order['id']}}</span></p>-->
