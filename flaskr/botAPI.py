@@ -83,6 +83,19 @@ def current_pos():
     return Response('Ok')
 
 
+@bp.route('/settings', methods=('GET', 'POST'))
+def settings():
+    db = get_db()
+    settings = db.execute(
+        'SELECT *'
+        ' FROM bot_settings '
+    ).fetchone()
+
+    data = json.dumps(settings, indent=4, sort_keys=True, default=str)
+
+    return data
+
+
 
 
 
