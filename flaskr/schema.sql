@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS current_position;
 DROP TABLE IF EXISTS positions;
 DROP TABLE IF EXISTS order_history;
+DROP TABLE IF EXISTS bot_settings;
 
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,7 +35,7 @@ CREATE TABLE positions (
   symbol TEXT NOT NULL,
   position_size INTEGER NOT NULL,
   margin INTEGER NOT NULL,
-  profit INTEGER NOT NULL SET DEFAULT 0,
+  profit INTEGER NOT NULL DEFAULT 0,
   status TEXT NOT NULL
 );
 
@@ -47,5 +48,18 @@ CREATE TABLE order_history (
   FOREIGN KEY (id) REFERENCES positions (id)
 );
 
-INSERT INTO positions (opened_position, entry_price, symbol, position_size, margin,profit, status)
-VALUES (0, 0, 0, 0, 0, 0, 0)
+CREATE TABLE bot_settings (
+  position_amt INTEGER NOT NULL DEFAULT 0.01 ,
+  symbol TEXT NOT NULL DEFAULT 'ETHUSDT' ,
+  stop_percent INTEGER NOT NULL DEFAULT 0.01
+
+);
+
+INSERT INTO positions (id,opened_position, entry_price, symbol, position_size, margin,profit, status)
+VALUES (0, 0, 0, 0, 0, 0, 0, 0);
+
+INSERT INTO current_position (id)
+VALUES (0);
+
+INSERT INTO bot_settings (position_amt)
+VALUES (0.01)
