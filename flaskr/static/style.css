@@ -79,3 +79,13 @@ tr:hover td {
     color: green;
 }
 
+.hide{
+  display: none;
+}
+
+.show{
+  display: block;
+}
+.settings__header{
+  cursor: pointer;
+}
