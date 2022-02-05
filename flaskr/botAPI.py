@@ -83,6 +83,27 @@ def current_pos():
     return Response('Ok')
 
 
+@bp.route('/pos_history', methods=('GET', 'POST'))
+def pos_history():
+    if request.method == 'POST':
+        data = json.loads(request.json)
+
+        id = data['id']
+        datetime = data['datetime']
+        operation = data['operation']
+        amount = data['amount']
+        price = data['price']
+
+        db = get_db()
+        db.execute(
+             'INSERT INTO order_history (id, datetime, operation, amount, price )'
+            ' VALUES (?, ?, ?, ?, ?, ?, ?)',
+            (id, datetime, operation, amount, price)
+        )
+        db.commit()
+    return Response('Ok')
+
+
 @bp.route('/settings', methods=('GET', 'POST'))
 def settings():
     db = get_db()

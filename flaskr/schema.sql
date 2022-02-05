@@ -51,7 +51,9 @@ CREATE TABLE order_history (
 CREATE TABLE bot_settings (
   position_amt INTEGER NOT NULL DEFAULT 0.01 ,
   symbol TEXT NOT NULL DEFAULT 'ETHUSDT' ,
-  stop_percent INTEGER NOT NULL DEFAULT 0.01
+  stop_percent INTEGER NOT NULL DEFAULT 0.01,
+  margin INTEGER NOT NULL DEFAULT 5
+
 
 );
 

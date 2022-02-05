@@ -3,8 +3,7 @@
 {% block header %}
   <h1>{% block title %}Текущая позиция{% endblock %}</h1>
   {% if g.user %}
-    <a class="action" href="{{ url_for('blog.create') }}">New</a>
-    <a class="action" href="{{ url_for('blog.history') }}">History</a>
+    <a class="action" href="{{ url_for('blog.history') }}">История сделок</a>
 
   {% endif %}
 {% endblock %}
@@ -63,7 +62,7 @@
   {% else %}
     <p>Нет открытых позиций</p>
 </div>
-  
+  {% endif %}
 
 <div class="settings">
   <div class="settings__header" id='set'>
@@ -74,11 +73,10 @@
       <li>Символ: {{settings['symbol']}}</li>
       <li>Размер позиции: {{settings['position_amt']}}</li>
       <li>Процент стоп-лосса: {{settings['stop_percent']}}</li>
+      <li>Маржа: {{settings['margin']}}</li>
     </ul>
   </div>
 </div>
-  
-  {% endif %}
 {% endblock %}
 
 
